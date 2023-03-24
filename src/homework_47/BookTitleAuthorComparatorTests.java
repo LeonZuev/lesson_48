@@ -23,10 +23,12 @@ public class BookTitleAuthorComparatorTests {
     Book book2 = new Book("Author","B",1);
 
     //act
-    int result = comparator.compare(book1, book2);
+    int result1 = comparator.compare(book1, book2);
+    int result2 = comparator.compare(book2, book1);
 
     //assert
-    assertTrue(result < 0);
+    assertTrue(result1 < 0);
+    assertTrue(result2 > 0);
 
   }
   @Test
@@ -39,5 +41,23 @@ public class BookTitleAuthorComparatorTests {
 
     //assertEquals(result1, -result2); // результаты должны получиться с разными знаками
      assertTrue(result1 * result2 < 0);  //так правильно
+  }
+
+  @Test
+  public void sameTitleDifferentAuthorComparison() {
+    //сравниваем разные названия
+
+    //arrange
+    Book book1 = new Book("Author","A",1);
+    Book book2 = new Book("Buthor","A",1);
+
+    //act
+    int result1 = comparator.compare(book1, book2);
+    int result2 = comparator.compare(book2, book1);
+
+    //assert
+    assertEquals( 0, result1);
+    assertEquals( 0, result2);
+
   }
 }
